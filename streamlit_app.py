@@ -77,7 +77,6 @@ def app():
         value=2,  # Initial value
     )
 
-"""
     # Create the selecton of classifier
     clf = GaussianNB() 
     options = ['Logistic Regression', 'Naive Bayes', 'Support Vector Machine']
@@ -92,7 +91,8 @@ def app():
         clf = svm.SVC(kernel='linear', C=1000)
     else:
         clf = GaussianNB()
-        
+
+  """
     if st.button('Start'):
         centers = generate_random_points_in_square(-4, 4, -4, 4, n_clusters)
         X, y = make_blobs(n_samples=n_samples, n_features=2,
@@ -115,7 +115,6 @@ def app():
         st.subheader('VIsualization')
         visualize_classifier(clf, X_test, y_test_pred)
         st.session_state['new_cluster'] = False
-
 """
 
 def visualize_classifier(classifier, X, y, title=''):
