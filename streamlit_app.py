@@ -77,19 +77,6 @@ def app():
         value=2,  # Initial value
     )
 
-    """
-    # Create the selecton of classifier
-    clf = GaussianNB() 
-    options = ['Logistic Regression', 'Naive Bayes', 'Support Vector Machine']
-    selected_option = st.selectbox('Select the classifier', options)
-    if selected_option =='Logistic Regression':
-       
-    elif selected_option=='Support Vector Machine':
-        clf = svm.SVC(kernel='linear', C=1000)
-    else:
-        
-    """
-    
     if st.button('Start'):
 
         centers = generate_random_points_in_square(-4, 4, -4, 4, n_clusters)
@@ -100,7 +87,8 @@ def app():
         # Split the dataset into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(X, y, \
             test_size=0.2, random_state=42)
-                
+        
+        st.subheader('Logistic Regression')
         clf = LogisticRegression(C=1.0, class_weight=None, 
             dual=False, fit_intercept=True,
             intercept_scaling=1, max_iter=100, multi_class='auto',
@@ -110,10 +98,12 @@ def app():
         y_test_pred = classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
 
+        st.subheader('Naive Bayes')
         clf = GaussianNB()
         y_test_pred = classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
 
+        st.subheader('Support Vector Machine')
         clf = svm.SVC(kernel='linear', C=1000)
         y_test_pred = classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
