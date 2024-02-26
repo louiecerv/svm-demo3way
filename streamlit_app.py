@@ -92,7 +92,8 @@ def app():
     else:
         clf = GaussianNB()
 
-  """
+    """
+    
     if st.button('Start'):
         centers = generate_random_points_in_square(-4, 4, -4, 4, n_clusters)
         X, y = make_blobs(n_samples=n_samples, n_features=2,
@@ -115,7 +116,7 @@ def app():
         st.subheader('VIsualization')
         visualize_classifier(clf, X_test, y_test_pred)
         st.session_state['new_cluster'] = False
-"""
+    """
 
 def visualize_classifier(classifier, X, y, title=''):
     # Define the minimum and maximum values for X and Y
