@@ -107,15 +107,15 @@ def app():
             n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
             tol=0.0001, verbose=0, warm_start=False)
         
-        classify(clf)
+        classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
 
         clf = GaussianNB()
-        classify(clf)
+        classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
 
         clf = svm.SVC(kernel='linear', C=1000)
-        classify(clf)
+        classify(clf, X_train, X_test, y_train, y_test)
         visualize_classifier(clf, X_test, y_test_pred)
 
 def classify(clf, X_train, X_test, y_train, y_test):
