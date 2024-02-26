@@ -77,24 +77,21 @@ def app():
         value=2,  # Initial value
     )
 
+    """
     # Create the selecton of classifier
     clf = GaussianNB() 
     options = ['Logistic Regression', 'Naive Bayes', 'Support Vector Machine']
     selected_option = st.selectbox('Select the classifier', options)
     if selected_option =='Logistic Regression':
-        clf = LogisticRegression(C=1.0, class_weight=None, 
-            dual=False, fit_intercept=True,
-            intercept_scaling=1, max_iter=100, multi_class='auto',
-            n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
-            tol=0.0001, verbose=0, warm_start=False)
+       
     elif selected_option=='Support Vector Machine':
         clf = svm.SVC(kernel='linear', C=1000)
     else:
-        clf = GaussianNB()
-
+        
     """
     
     if st.button('Start'):
+
         centers = generate_random_points_in_square(-4, 4, -4, 4, n_clusters)
         X, y = make_blobs(n_samples=n_samples, n_features=2,
                     cluster_std=cluster_std, centers = centers,
@@ -103,7 +100,25 @@ def app():
         # Split the dataset into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(X, y, \
             test_size=0.2, random_state=42)
+                
+        clf = LogisticRegression(C=1.0, class_weight=None, 
+            dual=False, fit_intercept=True,
+            intercept_scaling=1, max_iter=100, multi_class='auto',
+            n_jobs=1, penalty='l2', random_state=42, solver='lbfgs',
+            tol=0.0001, verbose=0, warm_start=False)
         
+        classify(clf)
+        visualize_classifier(clf, X_test, y_test_pred)
+
+        clf = GaussianNB()
+        classify(clf)
+        visualize_classifier(clf, X_test, y_test_pred)
+
+        clf = svm.SVC(kernel='linear', C=1000)
+        classify(clf)
+        visualize_classifier(clf, X_test, y_test_pred)
+
+def classify(clf):
         clf.fit(X_train,y_train)
         y_test_pred = clf.predict(X_test)
         st.subheader('Confusion Matrix')
@@ -113,10 +128,7 @@ def app():
         st.text(cm)
         st.subheader('Performance Metrics')
         st.text(classification_report(y_test, y_test_pred))
-        st.subheader('VIsualization')
-        visualize_classifier(clf, X_test, y_test_pred)
-        st.session_state['new_cluster'] = False
-    """
+        st.subheader('Visualization')    
 
 def visualize_classifier(classifier, X, y, title=''):
     # Define the minimum and maximum values for X and Y
