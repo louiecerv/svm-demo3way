@@ -77,6 +77,7 @@ def app():
         value=2,  # Initial value
     )
 
+"""
     # Create the selecton of classifier
     clf = GaussianNB() 
     options = ['Logistic Regression', 'Naive Bayes', 'Support Vector Machine']
@@ -114,6 +115,8 @@ def app():
         st.subheader('VIsualization')
         visualize_classifier(clf, X_test, y_test_pred)
         st.session_state['new_cluster'] = False
+
+"""
 
 def visualize_classifier(classifier, X, y, title=''):
     # Define the minimum and maximum values for X and Y
