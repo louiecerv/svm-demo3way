@@ -68,10 +68,6 @@ def app():
         value=0.5  # Initial value
     )
 
-
-
-     = st.number_input("")
-
     random_state = st.slider(
         label="Random seed (between 0 and 100):",
         min_value=0,
