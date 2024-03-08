@@ -58,23 +58,32 @@ def app():
         min_value=200,
         max_value=4000,
         step=200,
-        value=1000,  # Initial value
+        value=1000  # Initial value
     )
 
-    cluster_std = st.number_input("Standard deviation (between 0 and 1):")
+    cluster_std = st.slider(
+        label="Standard deviation (between 0 and 1):",
+        min_value=0.0,
+        max_value=1.0,
+        value=0.5  # Initial value
+    )
+
+
+
+     = st.number_input("")
 
     random_state = st.slider(
         label="Random seed (between 0 and 100):",
         min_value=0,
         max_value=100,
-        value=42,  # Initial value
+        value=42  # Initial value
     )
    
     n_clusters = st.slider(
         label="Number of Clusters:",
         min_value=2,
         max_value=6,
-        value=2,  # Initial value
+        value=2  # Initial value
     )
 
     if st.button('Start'):
